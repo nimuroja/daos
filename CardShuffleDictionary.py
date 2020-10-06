@@ -12,14 +12,23 @@ def getList(dict1):
 
 def getValues(dict1):
     return list(dict1.values())
-
+"""
+This function recieves the key of FACE and concatenates that to the type
+of card it is. The value of FACE is then added and turned into a dictionary.
+It is shuffled by turning each item into a list item and then turned back
+into a dictionary by the dict() function
+"""
 #shuffles the deck to allow dicitonary values
 def shuffledDeck(): 
+    #Variables
     shuffledCards = {}
+    #gets the faces and turns into list
     key = getList(FACE)
+    #gets the weight of the card, turns into list
     value = getValues(FACE)
-    
-    for i in range(0,13):
+        
+   
+    for i in range(0,13): #amount of FACE cards
         for j in TYPE:
             shuffledCards[key[i] + ' of ' + j] = (value[i])
 
