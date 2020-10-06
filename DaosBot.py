@@ -23,4 +23,4 @@ async def on_message(message):
         x = shuffledDeck()
         await message.channel.send(x)
 
-client.run('NzYyOTA2NjQ2NDYwMTA0NzI0.X3v-Lg.DHvNj9eo7vkAaomD6Rx7XjyngZc')
+client.run('Bot_Token')
