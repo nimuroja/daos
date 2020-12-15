@@ -444,4 +444,4 @@ async def on_message(message):
             temp_msg.delete()
 
 
-client.run("Nzg3MTM2MjU5NTc1MTE5OTEz.X9QjxA.YJAvL3kQOprBKlg-xt92X3j1zyE")
+client.run("Bot_Token_Here")
