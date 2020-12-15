@@ -26,7 +26,8 @@ async def on_message(message):
         x = "$help - prints all commands\n" \
             "$hello - says hello \n" \
             "$poker - starts a 2 player poker game\n" \
-            "$blackjack - starts a blackjack game\n"
+            "$blackjack - starts a blackjack game\n" \
+            "$cardshuffle - prints a randomly shuffled deck of cards"
         await message.channel.send(x)
     
     if message.content.startswith('$cardshuffle'):
