@@ -1,3 +1,5 @@
+
+
 import random
 
 class Players:
@@ -18,10 +20,8 @@ class LinkedList:
         self.headval = None
 
 
-playerName = 'Danny'
-numPlayers = 0
-
 # Circular queue
+    # Could not think of or find a better way to implement a singly-linked list in Python
 playerList = LinkedList()
 p1 = Players(playerName, 10000)
 p2 = Players(playerName, 10000)
@@ -73,6 +73,7 @@ def makeDecks(suit, value, face, numDecks=1):
     return deck
 
 
+# Takes decklist as argument and returns the decklist shuffled
 def shuffleDeck(decklist):
     shuffler = list(decklist)
     random.shuffle(shuffler)
@@ -80,6 +81,7 @@ def shuffleDeck(decklist):
     return newDecklist
 
 
+# Handles looping the linked list to deal each player 2 cards
 def deal(pokerDeck, cardIndex):
     for Players in tempList:
         if Players.isPlaying:
@@ -89,6 +91,7 @@ def deal(pokerDeck, cardIndex):
             cardIndex = cardIndex + 1
 
 
+# Handles betting until all players' round bets = minimumBet
 def betting(headPtr):
     minBet = 0
     startPlayer = headPtr.headval.nextPlayer
@@ -120,16 +123,17 @@ def betting(headPtr):
                     else:
                         readyForFlip = False
                         break
-
         headPtr.headval = headPtr.headval.nextPlayer
     clearBets()
 
 
+# Resets all players roundBets to 0
 def clearBets():
     for Players in tempList:
         Players.roundBet = 0
 
 
+# Checks to see if everyone folded before full river flop
 def isOnlyPlayer():
     count = 0
     for Players in tempList:
@@ -142,12 +146,13 @@ def isOnlyPlayer():
         return False
 
 
-def findBestHand(listofCards):
-    best = listofCards
-    # Find best poker hand
+# Finds and returns the best hand given the players cards and the river
+def findBestHand(listofCards, river):
+    best = listofCards + river
     return best
 
 
+# Play a game of Poker
 def pokerHand(numPlayers):
     holdEmDecklist = shuffleDeck(makeDecks(suits, values, faces))
     river = []
@@ -211,4 +216,3 @@ def pokerHand(numPlayers):
     for Players in Players.isPlaying:
         print("Your total profits were: {}".format(Players.money-10000))
 
-    pot = 0
