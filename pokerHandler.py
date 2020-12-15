@@ -1,7 +1,7 @@
 import random
 
 class Players:
-    def __init__(self, name, money, isDealer, isBetting, nextPlayer, cards, roundBet, visited):
+    def __init__(self, name, money, isDealer, isBetting, nextPlayer, cards, roundBet, isPlaying, winVal):
         self.name = name
         self.money = 10000
         self.isBetting = True
@@ -10,6 +10,7 @@ class Players:
         self.cards = None
         self.roundBet = 0
         self.isPlaying = False
+        self.winVal = 0
 
 
 class LinkedList:
@@ -135,8 +136,17 @@ def isOnlyPlayer():
         if Players.isBetting:
             count = count + 1
 
-    if count==1: return True
-    else: return False
+    if count == 1:
+        return True
+    else:
+        return False
+
+
+def findBestHand(listofCards):
+    best = listofCards
+    # Find best poker hand
+    return best
+
 
 def pokerHand(numPlayers):
     holdEmDecklist = shuffleDeck(makeDecks(suits, values, faces))
@@ -168,15 +178,32 @@ def pokerHand(numPlayers):
         print("The river cards are: {}".format(river))
 
     for Players in Players.isBetting:
-        # isRoyalFlush
-        # isStraightFlush
-        # is4Kind
-        # isFlush
-        # isStraight
-        # is3Kind
-        # isTwoPair
-        # isPair
-        # isHighCard
+        hand = Players.cards + river
+        bestHand = findBestHand(hand)
+        if bestHand is royalFlush:
+            Players.winVal = 100
+        elif bestHand is straightFlush:
+            Players.winVal = 99
+        elif bestHand is fourofaKind:
+            Players.winVal = 98
+        elif bestHand is flush:
+            Players.winVal = 97
+        elif bestHand is straight:
+            Players.winVal = 96
+        elif bestHand is threeofaKind:
+            Players.winVal = 95
+        elif bestHand is twoPair:
+            Players.winVal = 94
+        elif bestHand is pair:
+            Players.winVal = 93
+        elif bestHand is highCard:
+            Players.winVal = 1
+
+    for Players in Players.isBetting:
+        highVal = 0
+        if Players.winVal > highVal: highVal = Players.winVal
+    for Players in Players.isBetting:
+        if Players.winVal == highVal: Players.isWinner = True
     for Players in tempList:
         if Players.isWinner == True:
             Players.money = Players.money + pot
@@ -185,6 +212,3 @@ def pokerHand(numPlayers):
         print("Your total profits were: {}".format(Players.money-10000))
 
     pot = 0
-    del river
-
-    # END FUNC
